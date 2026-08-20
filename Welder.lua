@@ -274,9 +274,7 @@ function LowsUNCWeldTo(Part: BasePart, OverwriteVPOW): any
 	
 	local thread: thread = nil
 	function Weld:Destroy()
-		if ViewPartOnWeldC then
-			workspace.CurrentCamera.CameraSubject = OldSubject
-		end
+		workspace.CurrentCamera.CameraSubject = OldSubject
 		task.cancel(thread)
 		Weld:Enable(false)
 		if AnimTrack then AnimTrack:Stop(); AnimTrack:Destroy() end
@@ -380,9 +378,7 @@ function WeldTo(TargetPart: BasePart, OverwriteVPOW): any
 	end
 
 	function Weld:Destroy()
-		if ViewPartOnWeldC then
-			workspace.CurrentCamera.CameraSubject = OldSubject
-		end
+		workspace.CurrentCamera.CameraSubject = OldSubject
 		
 		if Connection then Connection:Disconnect() end
 		if AnimTrack then AnimTrack:Stop(); AnimTrack:Destroy() end
