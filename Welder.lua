@@ -182,7 +182,7 @@ pcall(function()
 	PhysicsService:RegisterCollisionGroup(WELD_GROUP)
 	PhysicsService:CollisionGroupSetCollidable(WELD_GROUP, WELD_GROUP, true)
 end)
-local LSS = false
+local LSS = true
 function LowsUNCWeldTo(Part: BasePart, OverwriteVPOW): any
 	if not Part.Parent then return end
 	if Players:GetPlayerFromCharacter(Part.Parent :: Model) then
@@ -492,7 +492,7 @@ local LSSB = Create("TextButton", {
 	Parent = WeldingTab
 })
 local LSSBText = LSSB.Text
-LSSB.Text = LSSBText..": OFF"
+LSSB.Text = LSSBText..": ON"
 LSSB.MouseButton1Click:Connect(function()
 	LSS = not LSS
 	if LSS then
