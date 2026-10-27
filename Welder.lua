@@ -1,5 +1,5 @@
 if getgenv().mentalsgui then
-    getgenv().mentalsgui:Destroy()
+	getgenv().mentalsgui:Destroy()
 end
 local localplr = game:GetService("Players").LocalPlayer
 local mouse = localplr:GetMouse()
@@ -13,45 +13,45 @@ sgui.Parent = hiddenUI
 local mainColor = Color3.fromRGB(100, 100, 100)
 mainBorderColor = Color3.new(1,1,1)
 function darken(amount, color, mult)
-    if color == nil then color = mainColor end
-    if mult == nil then mult = 20 end
-    return Color3.fromRGB(color.R*255 - amount*mult, color.G*255 - amount*mult, color.B*255 - amount*mult)
+	if color == nil then color = mainColor end
+	if mult == nil then mult = 20 end
+	return Color3.fromRGB(color.R*255 - amount*mult, color.G*255 - amount*mult, color.B*255 - amount*mult)
 end
 function Create(ClassName, Properties)
-    local thing = Instance.new(ClassName)
-    for i,v in pairs(Properties) do
-        thing[i] = v
-    end
-    local hasBorderColor3 = pcall(function()
-        return thing.BorderColor3
-    end)
-    if hasBorderColor3 then
-        thing.BorderColor3 = mainBorderColor
-    end
-    return thing
+	local thing = Instance.new(ClassName)
+	for i,v in pairs(Properties) do
+		thing[i] = v
+	end
+	local hasBorderColor3 = pcall(function()
+		return thing.BorderColor3
+	end)
+	if hasBorderColor3 then
+		thing.BorderColor3 = mainBorderColor
+	end
+	return thing
 end
 local mainframe = Create("Frame", {
-    Size = UDim2.new(0.75, 0, 0.375, 0),
-    AnchorPoint = Vector2.new(0.5, 0.5),
-    Position = UDim2.new(0.5, 0, 0.5, 0),
-    BackgroundColor3 = darken(0),
-    Parent = sgui
+	Size = UDim2.new(0.75, 0, 0.375, 0),
+	AnchorPoint = Vector2.new(0.5, 0.5),
+	Position = UDim2.new(0.5, 0, 0.5, 0),
+	BackgroundColor3 = darken(0),
+	Parent = sgui
 })
 Create("UIAspectRatioConstraint", {
-    AspectRatio = 1.75,
+	AspectRatio = 1.75,
 	DominantAxis = Enum.DominantAxis.Height,
-    Parent = mainframe
+	Parent = mainframe
 })
 Create("UIDragDetector", {
 	Parent = mainframe
 })
 local title = Create("TextLabel", {
-    Text = "Welder\nBy AreYouMental110",
-    TextScaled = true,
-    Size = UDim2.new(1-(0.2/1.75), 0, 0.2, 0),
-    TextColor3 = mainBorderColor,
-    BackgroundColor3 = darken(0),
-    Parent = mainframe
+	Text = "Welder\nBy AreYouMental110",
+	TextScaled = true,
+	Size = UDim2.new(1-(0.2/1.75), 0, 0.2, 0),
+	TextColor3 = mainBorderColor,
+	BackgroundColor3 = darken(0),
+	Parent = mainframe
 })
 local CloseButton = Create("TextButton", {
 	Size = UDim2.new(0.2/1.75, 0, 0.2, 0),
@@ -182,7 +182,7 @@ pcall(function()
 	PhysicsService:RegisterCollisionGroup(WELD_GROUP)
 	PhysicsService:CollisionGroupSetCollidable(WELD_GROUP, WELD_GROUP, true)
 end)
-local LSS = true
+local LSS = false
 function LowsUNCWeldTo(Part: BasePart, OverwriteVPOW): any
 	if not Part.Parent then return end
 	if Players:GetPlayerFromCharacter(Part.Parent :: Model) then
@@ -353,6 +353,7 @@ function WeldTo(TargetPart: BasePart, OverwriteVPOW): any
 		if sethiddenproperty then
 			pcall(function()
 				sethiddenproperty(Root, "PhysicsRepRootPart", TargetPart)
+				sethiddenproperty(Root, "PhysicsRepRootRef", InstanceHandle.new(TargetPart))
 			end)
 		end
 	end)
@@ -468,7 +469,7 @@ Create("TextLabel", {
 	Position = UDim2.new(0, 0, 1.4/6, 0),
 	TextColor3 = mainBorderColor,
 	BackgroundColor3 = darken(3),
-	Text = "Weld method originally discovered by Failedmite and Janmandio.",
+	Text = "Weld method originally discovered by Failedmite, and Janmandio. Original weld plugin made by deerius. New fixed method (fixed) by McTurtles5/m.4t14s.",
 	TextScaled = true,
 	Parent = WeldingTab
 })
@@ -492,7 +493,7 @@ local LSSB = Create("TextButton", {
 	Parent = WeldingTab
 })
 local LSSBText = LSSB.Text
-LSSB.Text = LSSBText..": ON"
+LSSB.Text = LSSBText..": OFF"
 LSSB.MouseButton1Click:Connect(function()
 	LSS = not LSS
 	if LSS then
